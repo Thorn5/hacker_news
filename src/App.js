@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import New from './components/New';
+import SearchBar from './components/SearchBar';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [data, setData] = useState(null);
+  const [searchData, setSearchData] = useState(null);
+
+  useEffect(() => {
+
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const url = `https://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=created_at_i>${date}&page=1`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => { setData(data) })
+      .catch(error => { console.error('Error:', error) })
+  }, []);
+
+  if (!data) {
+    console.log('Loading');
+    return <p>Loading...</p>
+  }
+  else {
+    console.log('data', data);
+    console.log('search', searchData);
+    return (
+      <div className="App">
+        <SearchBar data={data} setSearchData={setSearchData} />
+        {searchData ? (
+          <>
+            {searchData.map(hit => <New hit={hit} key={hit.objectID} />)}
+          </>
+        ) : (
+          <>
+            {data.hits.map(hit => <New hit={hit} key={hit.objectID} />)}
+          </>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -8,7 +8,7 @@ const SearchTopicBar = (props) => {
     e.preventDefault();
     if (searchTerm) {
       props.setTopic(searchTerm);
-      fetch(`http://hn.algolia.com/api/v1/search?query=${searchTerm}`)
+      fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`)
         .then(response => response.json())
         .then(data => {
           props.setTopicData(data);

@@ -14,7 +14,6 @@ const LastNews = (props) => {
       .catch(error => { console.error('Error:', error) })
   }, []);
 
-
   return (
     <h1>Latest news</h1>
   );

@@ -1,7 +1,7 @@
-const DynamicQuery () => {
+const DynamicQuery = () => {
     return(
         <div>
-        <h3>DynamicQuery tab</h3>
+        <h3>DynamicQuery page</h3>
         </div>
     )
 }

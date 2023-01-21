@@ -1,7 +1,7 @@
-const FixedQuery () => {
+const FixedQuery = () => {
     return(
         <div>
-        <h3>FixedQuery tab</h3>
+        <h3>FixedQuery page</h3>
         </div>
     )
 }

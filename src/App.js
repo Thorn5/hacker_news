@@ -22,7 +22,7 @@ function App() {
       </form>
       {newses.map(news => (
         <News 
-          id = {news.story_id}
+          key={news.story_id}
           title = {news.title}
           url = {news.url}
           author= {news.author}

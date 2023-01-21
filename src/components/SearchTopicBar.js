@@ -7,6 +7,7 @@ const SearchTopicBar = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm) {
+      props.setTopic(searchTerm);
       fetch(`http://hn.algolia.com/api/v1/search?query=${searchTerm}`)
         .then(response => response.json())
         .then(data => {

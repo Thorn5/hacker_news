@@ -25,3 +25,14 @@ code {
 .search-input:focus {
   border-color: #3498db;
 }
+
+.submit-button {
+  background-color: #777777;
+  color: white;
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 5px 0px #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px;
+}

@@ -21,12 +21,9 @@ function App() {
   }, []);
 
   if (!data) {
-    console.log('Loading');
     return <p>Loading...</p>
   }
   else {
-    console.log('data', data);
-    console.log('search', searchData);
     return (
       <div className="App">
         <SearchBar data={data} setSearchData={setSearchData} />

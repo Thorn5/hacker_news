@@ -2,8 +2,9 @@ const New = (props) => {
 
   return (
     <div className="new">
-      <h3>{props.hit.title}</h3>
-      <div className="createdAt">{props.hit.created_at}</div>
+      <h4>{props.hit.title}</h4>
+      <a className="link" href={props.hit.url}>Link</a>
+      <div className="date">{props.hit.created_at}</div>
       <div className="author">{props.hit.author}</div>
     </div>
   );

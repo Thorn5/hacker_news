@@ -4,21 +4,34 @@ import './App.css';
 
 function App() {
  const [newses , setNewses] = useState([]);
+ const [search , setSearch] = useState("");
+ const [query , setQuery] = useState("bitcoin");
 
   useEffect(()=> {
     getNews();
   },[])
   const getNews = async () => {
-    const response = await fetch('http://hn.algolia.com/api/v1/search_by_date?');
+    const response = await fetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
     const data = await response.json();
     setNewses(data.hits);
     console.log(data.hits);
   }
+  const updateSearch = e => {
+    setSearch(e.target.value);
+  }
+  const getSearch = e => {
+    e.preventDefult();
+    setQuery (search);
+  }
   return (
     <div className="App">
-      <form>
+      <form className='search-form' onSubmit={getSearch}>
         <input className="search-bar" type= "text"/>
-        <button className="search-button" type="submit">search</button>
+        <button  className="search-button" 
+        type="submit"
+        value={search}
+        onChange= {updateSearch}
+        >search</button>
       </form>
       {newses.map(news => (
         <News 

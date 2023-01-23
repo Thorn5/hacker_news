@@ -14,13 +14,13 @@ const Navbar = () => {
                 <span>
                     &nbsp; &nbsp; &nbsp;
                     <NavLink to='/fixedquery'>
-                        Fixed Query
+                        Level 1.1: Fixed Query
                     </NavLink>
                 </span>
                 <span>
                     &nbsp; &nbsp; &nbsp;
                     <NavLink to='/dynamicquery'>
-                        Dynamic Query
+                        Level 1.2: Dynamic Query
                     </NavLink>
                 </span>
             </nav>

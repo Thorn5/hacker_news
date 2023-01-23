@@ -26,11 +26,10 @@ function App() {
   return (
     <div className="App">
       <form className='search-form' onSubmit={getSearch}>
-        <input className="search-bar" type= "text"/>
+        <input className="search-bar" type= "text" value={search}/>
         <button  className="search-button" 
         type="submit"
-        value={search}
-        onChange= {updateSearch}
+        onClick={updateSearch}
         >search</button>
       </form>
       {newses.map(news => (

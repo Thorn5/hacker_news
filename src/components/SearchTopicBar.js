@@ -6,17 +6,17 @@ const SearchTopicBar = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.setTopic(searchTerm);
+    props.setLoading(true);
     if (searchTerm) {
-      props.setTopic(searchTerm);
       fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${searchTerm}&tags=story`)
         .then(response => response.json())
         .then(data => {
-          props.setTopicData(data);
-          props.setWaiting(false);
+          props.setData(data.hits);
         })
         .catch(error => console.log(error))
+        .finally(() => props.setLoading(false));
     } else {
-      props.setWaiting(true);
     }
   }
 
@@ -25,15 +25,17 @@ const SearchTopicBar = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        className='search-input'
-        placeholder="Search topic..."
-        onChange={handleChange}
-      />
-      <input type="submit" value="Submit" className="submit-button" />
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          className='search-input'
+          placeholder="Search topic..."
+          onChange={handleChange}
+        />
+        <input type="submit" value="Submit" className="submit-button" />
+      </form>
+    </>
   );
 }
 

@@ -2,13 +2,13 @@ const SearchBar = (props) => {
 
   const handleChange = (e) => {
     if (e.target.value) {
-      props.setSearchData(
+      props.setData(
         props.data.hits.filter(hit => {
           return hit.title.toLowerCase().includes(e.target.value.toLowerCase());
         })
       )
     } else {
-      props.setSearchData(null);
+      props.setData(null);
     }
   }
 

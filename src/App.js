@@ -20,7 +20,7 @@ function App() {
     setSearch(e.target.value);
   }
   const getSearch = e => {
-    e.preventDefult();
+    e.preventDefault();
     setQuery (search);
   }
   return (

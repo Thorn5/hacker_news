@@ -3,7 +3,7 @@ import React from 'react';
     return (
         <div>
             <h3>{title}</h3>
-            <p>{url}</p>
+            <a target="_blank" href={url}>{url}</a>
             <p>{author}</p>
         </div>
     );

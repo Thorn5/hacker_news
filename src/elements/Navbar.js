@@ -1,5 +1,5 @@
 import React from 'react';
-import {Outlet, Link, NavLink} from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     <div>
@@ -8,18 +8,19 @@ const Navbar = () => {
                 <NavLink to='/'>
                     Home
                 </NavLink>
-                </span>
-                <span>
+            </span>
+            <span>
                 <NavLink to='/fixedquery'>
                     Fixed Query
                 </NavLink>
-                </span>
-                <span>
+            </span>
+            <span>
                 <NavLink to='/dynamicquery'>
                     Dynamic Query
                 </NavLink>
-                </span>
+            </span>
         </nav>
+        <Outlet />
     </div>
 }
 

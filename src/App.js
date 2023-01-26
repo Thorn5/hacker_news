@@ -1,53 +1,36 @@
-import React,  {useEffect , useState} from 'react';
-import News from './components/News';
-import './App.css';
-import LoadingSpinner from './components/LoadingSpinner';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import {BrowserRouter, Route, Routes, Link} from "react-router-dom";
+import Home from './components/Home';
+import View from './view';
 
 function App() {
- const [newses , setNewses] = useState([]);
- const [search , setSearch] = useState("");
- const [query , setQuery] = useState("bitcoin");
- const [loading , setLoading] = useState(true);
-
-  useEffect(()=> {
-    getNews();
-  },[query])
-  const getNews = async () => {
-    const response = await fetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
-    const data = await response.json();
-    setNewses(data.hits);
-    setLoading(false);
-  }
-  const updateSearch = e => {
-    setSearch(e.target.value);
-  }
-  const getSearch = e => {
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
-  }
   return (
-    <div className="App">
-      <form className='search-form' onSubmit={getSearch}>
-        <input className="search-bar"
-        type= "text"
-        value={search}
-        onChange={updateSearch} 
-        />
-        <button className="search-button" type="submit"
-        >search</button>
-      </form>
-     {loading === true ? (<LoadingSpinner/>) :
-      (newses.map(news => (
-        <News 
-          key={news.story_id}
-          title={news.story_title}
-          url={news.url}
-          author={news.author}
-          // date = {new Intl.DateTimeFormat('en-Us' ,{year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(items.created_at_i)}
-          />
-      )))};
-    </div>
+   <BrowserRouter> 
+   <div>
+     <>
+      <Navbar bg="warning" variant="warning">
+        <Container>
+          <Navbar.Brand href="#home">Hacker-News</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/news">News</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <br />
+
+     </>
+     <div>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/news' element={<View/>}/>
+      </Routes>
+     </div>
+   </div>
+   </BrowserRouter>
   );
 }
 

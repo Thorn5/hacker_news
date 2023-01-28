@@ -1,22 +1,18 @@
 import 'react-dyn-tabs/style/react-dyn-tabs.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-card.css';
 import useDynTabs from 'react-dyn-tabs';
-import View from "./view"
+import View from '../view';
+import { option } from 'yargs';
 
 const DynamicQuery = () => {
 
-      //tabs
+  //tabs
   const options = {
     tabs: [
       {
         id: '1',
-        title: 'tab 1',
+        title: 'Search News',
         panelComponent: (props) => <View />,
-      },
-      {
-        id: '2',
-        title: 'tab 2',
-        panelComponent: (props) => <FixedQuery />,
       },
     ],
     selectedTabID: '1',
@@ -27,9 +23,9 @@ const DynamicQuery = () => {
   ready((instance) => {
     _instance = instance;
   });
-  const addTab3 = function () {
+  const addTab = function () {
     // open tab 3
-    _instance.open({id: '3', title: 'Tab 3', panelComponent: (porps) => <DynamicQuery />}).then(() => {
+    _instance.open({ id: '3', title: 'Tab 3', panelComponent: (porps) => <DynamicQuery /> }).then(() => {
       console.log('tab 3 is open');
     });
     // switch to tab 3
@@ -37,17 +33,16 @@ const DynamicQuery = () => {
       console.log('tab 3 is selected');
     });
   };
-
   // end tabs
 
 
-    return(
-        <div>
-                  <button onClick={addTab3}>Add tab 3</button>
+  return (
+    <div>
+      {/* <button onClick={addTab3}>Add tab 3</button> */}
       <TabList></TabList>
       <PanelList></PanelList>
-        </div>
-    )
+    </div>
+  )
 }
 
 export default DynamicQuery

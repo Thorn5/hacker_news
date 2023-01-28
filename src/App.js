@@ -1,7 +1,6 @@
 import { useState } from "react";
 import LastNews from "./components/LatestNews";
 import New from "./components/New";
-import SearchBar from "./components/SearchBar";
 import SearchTopicBar from "./components/SearchTopicBar";
 import './App.css';
 
@@ -32,11 +31,15 @@ const App = () => {
           {loading ?
             <h1>Loading...</h1> :
             <>
-              {/* Filter: <SearchBar
-                data={news}
-                setData={setNews} /> */}
-              <h1>News about {topic.toUpperCase()}</h1>
-              {news.map(hit => <New hit={hit} key={hit.objectID} />)}
+              {news.length ?
+                <>
+                  <h1>News about {topic.toUpperCase()}</h1>
+                  {news.map(hit => <New hit={hit} key={hit.objectID} />)}
+                </> :
+                <>
+                  <h1>No news found about {topic.toUpperCase()}</h1>
+                </>
+              }
             </>
           }
         </>

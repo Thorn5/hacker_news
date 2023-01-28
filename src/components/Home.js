@@ -9,12 +9,7 @@ const Home = () => {
                 <li>Searchable news page</li>
                 <li>page navigation within searches</li>
                 <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
             </ol>
-
-
         </div>
     )
 }

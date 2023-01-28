@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from "./Card";
 import { useEffect, useState } from "react";
 
 const useFormattedDate = (datetime) => {
@@ -30,11 +31,13 @@ const News = ({ title, url, author, date }) => {
 
     return (
         <div>
+          <Card>
             <h3>{title}</h3>
             <a target="_blank" href={url}>{url}</a>
             <p>{author}</p>
             <p>{formattedDate}</p>
             <div class="ui divider"></div>
+          </Card>
         </div>
     );
 };

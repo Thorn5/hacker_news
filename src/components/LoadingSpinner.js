@@ -11,16 +11,6 @@ import { ProgressBar } from "react-loader-spinner";
         alignItems: "center",
       }}
     >
-      {/* <ThreeDots
-        height="80"
-        width="80"
-        radius="9"
-        color="#023047"
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClassName=""
-        visible={true}
-      /> */}
       <ProgressBar
        height="80"
        width="80"

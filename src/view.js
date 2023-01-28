@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import News from './components/News';
 import './App.css';
 import LoadingSpinner from './components/LoadingSpinner';
+import { nsend } from 'q';
 
 function View() {
   const [newses, setNewses] = useState([]);
@@ -51,6 +52,7 @@ function View() {
               title={news.title}
               url={news.url}
               author={news.author}
+              date={news.created_at}
             />
           ))}
         </>

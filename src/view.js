@@ -11,6 +11,7 @@ function View() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     let url = '';
     if (query.length) {
       url = `http://hn.algolia.com/api/v1/search_by_date?query=${query}&tags=story`
@@ -46,17 +47,20 @@ function View() {
       {loading === true ? (<LoadingSpinner />)
         : <>
           {query ? <h1>News about {query}</h1> : <h1>Latest News</h1>}
-          {newses.map(news => (
-            <News
-              key={news.story_id}
-              title={news.title}
-              url={news.url}
-              author={news.author}
-              date={news.created_at}
-            />
-          ))}
+          {newses.length ?
+            newses.map(news => (
+              <News
+                key={news.story_id}
+                title={news.title}
+                url={news.url}
+                author={news.author}
+                date={news.created_at}
+              />
+            )) :
+            <h2>No news found :( </h2>
+          }
         </>
-      };
+      }
     </div>
   );
 }

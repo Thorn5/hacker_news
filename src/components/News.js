@@ -31,7 +31,7 @@ const News = ({ title, url, author, date }) => {
     return (
         <div>
             <h3>{title}</h3>
-            <a target="_blank" href={url}>{url}</a>
+            <a target="_blank" href={url}>Link</a>
             <p>{author}</p>
             <p>{formattedDate}</p>
             <div class="ui divider"></div>

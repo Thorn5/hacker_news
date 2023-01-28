@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {BrowserRouter, Route, Routes, Link} from "react-router-dom";
 import Home from './components/Home';
 import View from './view';
+import NoPage from './components/NoPage';
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
      </>
      <div>
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/news' element={<View/>}/>
+        <Route path='/' element={<Home />}/>
+        <Route path='/news' element={<View />}/>
+        <Route path='*' element={<NoPage />}/>
       </Routes>
      </div>
    </div>

@@ -20,12 +20,12 @@ function App() {
       {
         id: '1',
         title: 'tab 1',
-        panelComponent: (props) => <p> panel 1 </p>,
+        panelComponent: (props) => <Landing />,
       },
       {
         id: '2',
         title: 'tab 2',
-        panelComponent: (props) => <p> panel 2 </p>,
+        panelComponent: (props) => <FixedQuery />,
       },
     ],
     selectedTabID: '1',
@@ -38,7 +38,7 @@ function App() {
   });
   const addTab3 = function () {
     // open tab 3
-    _instance.open({id: '3', title: 'Tab 3', panelComponent: (porps) => <p> panel 3 </p>}).then(() => {
+    _instance.open({id: '3', title: 'Tab 3', panelComponent: (porps) => <DynamicQuery />}).then(() => {
       console.log('tab 3 is open');
     });
     // switch to tab 3

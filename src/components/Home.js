@@ -11,6 +11,7 @@ const Home = () => {
                 <li>progress bar</li>
                 <li>pagification / page navigation</li>
                 <li>Library based CSS styling</li>
+                <li>404 - page not found warning</li>
             </ol>
         </div>
     )

@@ -6,14 +6,21 @@ import LoadingSpinner from './components/LoadingSpinner';
 function View() {
   const [newses, setNewses] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("bitcoin");
+  const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getNews();
+    let url = '';
+    if (query.length) {
+      url = `http://hn.algolia.com/api/v1/search_by_date?query=${query}&tags=story`
+    } else {
+      url = `https://hn.algolia.com/api/v1/search_by_date?tags=story`
+    }
+    getNews(url);
   }, [query])
-  const getNews = async () => {
-    const response = await fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${query}&tags=story`);
+
+  const getNews = async (url) => {
+    const response = await fetch(url);
     const data = await response.json();
     setNewses(data.hits);
     setLoading(false);
@@ -35,27 +42,19 @@ function View() {
           <i class="search icon"></i>
         </button>
       </form>
-      {/* <form className='search-form' onSubmit={getSearch}>
-        <input className="search-bar"
-        type= "text"
-        value={search}
-        onChange={updateSearch} 
-        />
-        <button className="search-button" type="submit"
-        >search</button>
-      </form> */}
-      {loading === true ? (<LoadingSpinner />) :
-        (newses.map(news => (
-          <>
+      {loading === true ? (<LoadingSpinner />)
+        : <>
+          {query ? <h1>News about {query}</h1> : <h1>Latest News</h1>}
+          {newses.map(news => (
             <News
               key={news.story_id}
               title={news.title}
               url={news.url}
               author={news.author}
-            // date = {new Intl.DateTimeFormat('en-Us' ,{year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(items.created_at_i)}
             />
-          </>
-        )))};
+          ))}
+        </>
+      };
     </div>
   );
 }

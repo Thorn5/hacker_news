@@ -9,6 +9,8 @@ function View() {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const [pages , setPages] = useState(1);
+
 
   useEffect(() => {
     setLoading(true);
@@ -19,7 +21,7 @@ function View() {
       url = `https://hn.algolia.com/api/v1/search_by_date?tags=story`
     }
     getNews(url);
-  }, [query])
+  }, [query ,pages])
 
   const getNews = async (url) => {
     const response = await fetch(url);
@@ -57,10 +59,13 @@ function View() {
                 date={news.created_at}
               />
             )) :
-            <h2>No news found :( </h2>
+            <h2>No news found : </h2>
           }
         </>
       }
+      
+      <button onClick={() => setPages(pages+1)}>next</button>
+      <button onClick={() => setPages(pages-1)}>next</button>
     </div>
   );
 }

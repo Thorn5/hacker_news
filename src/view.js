@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import News from './components/News';
 import './App.css';
 import LoadingSpinner from './components/LoadingSpinner';
-import { nsend } from 'q';
-import { Button } from 'bootstrap';
 import ButtonPagination from './components/ButtonPagination'
 
 function View() {
@@ -18,12 +16,12 @@ function View() {
     setLoading(true);
     let url = '';
     if (query.length) {
-      url = `http://hn.algolia.com/api/v1/search_by_date?query=${query}&tags=story&page=${pages}`
+      url = `http://hn.algolia.com/api/v1/search_by_date?query=${query}&page=${pages}&tags=story`
     } else {
       url = `https://hn.algolia.com/api/v1/search_by_date?tags=story`
     }
     getNews(url);
-  }, [query , pages])
+  }, [query,pages])
 
   const getNews = async (url) => {
     const response = await fetch(url);
